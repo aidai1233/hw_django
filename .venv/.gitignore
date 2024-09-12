@@ -1,0 +1,8 @@
+# created by virtualenv automatically
+.idea
+.venv
+.venv/
+db.sqlite3
+__pycache__/
+
+
