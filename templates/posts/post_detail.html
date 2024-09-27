@@ -16,4 +16,16 @@
     <a href="/posts/{{post.id}}/" class="btn btn-primary">Go to post</a>
   </div>
  </div>
+<form action="" method="post">
+  {%csrf_token%}
+  {{form.as_p}}
+  <button type="submit">Add Comment</button>
+</form>
+{%for comment in comments%}
+<div class="card" style="width: 18rem;">
+<div class="card-body">
+     <h5 class="card-title">{{comment.text}}</h5>
+  </div>
+</div>
+{%endfor%}
 {%endblock%}

@@ -31,6 +31,6 @@ class Post(models.Model):
 
 class Comment(models.Model):
     text = models.CharField(max_length=400)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
 
 
