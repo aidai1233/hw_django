@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from posts.models import Post, Comment
 from posts.forms import PostForm2, CommentForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 
 def text_view(request):
@@ -14,12 +15,14 @@ def html_view(request):
         return render(request, 'base.html')
 
 
+@login_required(login_url='login')
 def list_view(request):
     if request.method == "GET":
         posts = Post.objects.all()
         return render(request, 'posts/post_list.html', context={'posts': posts})
 
 
+@login_required(login_url='login')
 def detail_view(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == "GET":

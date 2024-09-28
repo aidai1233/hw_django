@@ -17,13 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from posts.views import text_view, html_view, list_view, detail_view, post_create_view
+from user.views import register_view, login_view, logout_view
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register/', register_view, name='register'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
     path('text/', text_view),
-    path('', html_view),
-    path('posts/', list_view),
-    path('posts/<int:post_id>/', detail_view),
-    path('posts/create/', post_create_view)
+    path('', html_view, name='main_page'),
+    path('posts/', list_view, name='list'),
+    path('posts/<int:post_id>/', detail_view, name='detail'),
+    path('posts/create/', post_create_view, name='post_create')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
